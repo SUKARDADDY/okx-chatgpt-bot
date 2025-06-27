@@ -1,5 +1,5 @@
 """Thin wrapper around the OKX REST v5 API."""
-import time, hmac, base64, hashlib, json, logging, requests
+import time, hmac, base64, hashlib, json, requests
 from typing import Any, Dict, List, Optional
 
 class OKXClient:
