@@ -22,6 +22,7 @@ cd okx-chatgpt-bot
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 playwright install
-cp .env.example .env           # then edit with your secrets
+cp .env.example .env  # create your local env file
+# edit .env with your OpenAI and OKX credentials
 python cli.py trade
 ```
