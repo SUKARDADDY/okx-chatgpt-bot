@@ -4,8 +4,8 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
 
-from chatgpt_interface import ChatGPTInterface
-from okx_client import OKXClient
+from chatgpt._interface import ChatGPTInterface
+from okx._client import OKXClient
 
 class TradingBot:
     def __init__(self, chat: ChatGPTInterface, okx: OKXClient, log_file: str = "trades.json"):

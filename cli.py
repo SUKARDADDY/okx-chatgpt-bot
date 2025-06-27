@@ -3,8 +3,8 @@ import os, json, typer
 from prompt_toolkit.completion import WordCompleter
 from dotenv import load_dotenv
 
-from chatgpt_interface import ChatGPTInterface
-from okx_client import OKXClient
+from chatgpt._interface import ChatGPTInterface
+from okx._client import OKXClient
 from bot import TradingBot
 
 app = typer.Typer(help="ChatGPT‑driven OKX trading bot")
