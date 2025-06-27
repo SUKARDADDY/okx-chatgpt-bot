@@ -10,8 +10,7 @@ from bot import TradingBot
 app = typer.Typer(help="ChatGPT‑driven OKX trading bot")
 
 REQUIRED_VARS = [
-    "OPENAI_EMAIL",
-    "OPENAI_PASSWORD",
+    "OPENAI_API_KEY",
     "OKX_API_KEY",
     "OKX_API_SECRET",
     "OKX_API_PASSPHRASE",
@@ -38,7 +37,7 @@ def trade():
     amount = float(typer.prompt("Order size (quote currency)"))
     leverage = int(typer.prompt("Leverage", default="1"))
 
-    with ChatGPTInterface(os.getenv("OPENAI_EMAIL"), os.getenv("OPENAI_PASSWORD"), project_name="trading bot", headless=True) as chat:
+    with ChatGPTInterface() as chat:   # API key is picked up from env
         bot = TradingBot(chat, okx)
         typer.echo("Generating strategy via ChatGPT…")
         proposal = bot.propose_trade(pair, rr, amount, leverage)
