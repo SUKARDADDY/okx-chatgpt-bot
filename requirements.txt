@@ -1,4 +1,4 @@
-playwright==1.43.0
+openai>=1.25.0          # official SDK
 python-dotenv>=1.0.1
 requests>=2.32.3
 typer[all]>=0.12.3
