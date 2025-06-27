@@ -3,7 +3,7 @@
 ## Overview
 
 This command‑line application lets you generate and execute crypto trades on OKX using ChatGPT (model **o3**) for the strategy logic.
-All orders are placed through the OKX REST v5 API; browser automation (Playwright) is used to talk to ChatGPT via the website—**no OpenAI API keys required**.
+All orders are placed through the OKX REST v5 API; the OpenAI Chat Completions API is used for strategy generation — **no browser automation required**.
 
 ## Features
 
@@ -20,8 +20,7 @@ All orders are placed through the OKX REST v5 API; browser automation (Playwrigh
 git clone https://github.com/yourname/okx-chatgpt-bot.git
 cd okx-chatgpt-bot
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-playwright install
+pip install -r requirements.txt        # openai replaces playwright
 cp .env.example .env  # create your local env file
 # edit .env with your OpenAI and OKX credentials
 python cli.py trade
