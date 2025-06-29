@@ -1,5 +1,10 @@
 """CLI entry‑point using Typer + prompt‑toolkit."""
-import os, json, typer
+import logging
+import os
+import json
+
+import logging_config
+import typer
 from prompt_toolkit.completion import WordCompleter
 from dotenv import load_dotenv
 
@@ -23,8 +28,18 @@ def _check_env():
         raise typer.Exit(code=1)
 
 @app.command()
-def trade():
+def trade(
+    verbose: bool = typer.Option(
+        False,
+        "--verbose",
+        "-v",
+        help="Enable debug logging.",
+    )
+):
     """Interactive trade flow."""
+    if verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
     load_dotenv()
     _check_env()
 
