@@ -5,6 +5,8 @@
 This command‑line application lets you generate and execute crypto trades on OKX using ChatGPT (model **o3**) for the strategy logic.
 All orders are placed through the OKX REST v5 API; the OpenAI Chat Completions API is used for strategy generation — **no browser automation required**.
 
+The project exposes a single command line entry point via **`cli.py`**. Run `python cli.py --help` to explore available commands.
+
 ## Features
 
 - Trade logic is generated via OpenAI's API – no browser automation required.
