@@ -22,8 +22,14 @@ class ChatGPTInterface:
     def close(self): pass
 
     # --- public --- #
-    def send_prompt(self, prompt: str) -> str:
-        messages: Sequence[Dict[str, str]] = [{"role": "user", "content": prompt}]
+    def send_prompt(self, prompt: str, system_prompt: str | None = None) -> str:
+        if system_prompt is not None:
+            messages: Sequence[Dict[str, str]] = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt},
+            ]
+        else:
+            messages: Sequence[Dict[str, str]] = [{"role": "user", "content": prompt}]
         resp = openai.chat.completions.create(
             model=self.model,
             messages=messages,
