@@ -36,7 +36,7 @@ class TradingBot:
         user_prompt = (
             f"Pair: {pair}\nDesired RR: {desired_rr}\nAmount (quote): {amount}\nLeverage: {leverage}"
         )
-        raw = self.chat.send_prompt(sys_prompt + "\n---\n" + user_prompt)
+        raw = self.chat.send_prompt(user_prompt, system_prompt=sys_prompt)
         try:
             proposal = json.loads(raw)
         except json.JSONDecodeError:
