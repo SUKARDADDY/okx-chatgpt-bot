@@ -1,5 +1,6 @@
 """Thin wrapper around the OKX REST v5 API."""
 import time, hmac, base64, hashlib, json, requests
+from urllib.parse import urlencode
 from typing import Any, Dict, List, Optional
 
 class OKXClient:
@@ -27,9 +28,16 @@ class OKXClient:
             "Content-Type": "application/json"
         }
 
-    def _request(self, method: str, path: str, params: Optional[Dict[str, Any]] = None, body: Optional[Dict[str, Any]] = None, private: bool = False):
-        qs = "&".join(f"{k}={v}" for k, v in (params or {}).items())
-        request_path = f"/api/v5{path}{'?' + qs if qs else ''}"
+    def _request(
+        self,
+        method: str,
+        path: str,
+        params: Optional[Dict[str, Any]] = None,
+        body: Optional[Dict[str, Any]] = None,
+        private: bool = False,
+    ):
+        encoded = urlencode(params or {})
+        request_path = f"/api/v5{path}{'?' + encoded if encoded else ''}"
         url = self.base_url + request_path
         body_json = json.dumps(body) if body else ""
         headers = {}
@@ -37,7 +45,7 @@ class OKXClient:
             ts = self._timestamp()
             sig = self._sign(ts, method, request_path, body_json)
             headers = self._headers(ts, sig)
-        resp = requests.request(method, url, headers=headers, params=params, data=body_json, timeout=15)
+        resp = requests.request(method, url, headers=headers, data=body_json, timeout=15)
         resp.raise_for_status()
         return resp.json()
 
