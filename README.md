@@ -27,3 +27,7 @@ cp .env.example .env  # create your local env file
 # edit .env with your OpenAI and OKX credentials
 python cli.py trade
 ```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
