@@ -1,1 +1,17 @@
 .env
+# Python cache directories and files
+__pycache__/
+*.py[cod]
+
+# Virtual environment directories
+.venv/
+venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Miscellaneous
+.DS_Store
+*.swp
